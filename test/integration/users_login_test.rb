@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
 
-  def set up
-  @user = users(:yoshihiro)
+  def setup
+    @user = users(:yoshihiro)
   end
 
   test "login with invalid infomation" do
@@ -18,7 +18,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "login with valid informtion　by logout" do
     get login_path
-    post login_path, params: {session: {email: @user.email, password: 'password'}}
+    post login_path, params: { session: { email:    @user.email,
+    password: 'password' } }
     assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!
